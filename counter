@@ -1,39 +1,58 @@
 package practiceawt;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-class counter{
-    int count=0;
-    void count()
-    {
+import java.awt.event.*;
+
+class counter {
+    int count = 0;
+
+    void count() {
         count++;
     }
 
+    void reset() {
+        count = 0;
+    }
 }
-public class countingapp{
-public static void main(String[] args) {
-   Frame frame=new Frame();
-   Label label=new Label("Click the button to count");
-   frame.add(label);
-    TextField disp=new TextField("0");
-    disp.setBounds(300,300,100,50);
-     frame.add(disp);
-    Button b=new Button("+");
-   frame.add(b);
 
-   frame.setSize(400,400);
-   frame.setLayout(new FlowLayout());
-   frame.setBackground(Color.PINK);
-    frame.setVisible(true);
+public class countingapp {
+    public static void main(String[] args) {
 
-    counter obj=new counter();
-    b.addActionListener(new ActionListener() {
-       @Override
-       public void actionPerformed(ActionEvent e) {
-           obj.count();
-           disp.setText(String.valueOf(obj.count));
-       }
-   });
-}
+        Frame frame = new Frame();
+        Label label = new Label("Click the button to count");
+        frame.add(label);
+
+        TextField disp = new TextField("0");
+        disp.setBounds(300, 300, 100, 50);
+        frame.add(disp);
+
+        Button b = new Button("+");
+        Button resetBtn = new Button("Reset");
+
+        frame.add(b);
+        frame.add(resetBtn);
+
+        frame.setSize(400, 400);
+        frame.setLayout(new FlowLayout());
+        frame.setBackground(Color.PINK);
+        frame.setVisible(true);
+
+        counter obj = new counter();
+
+        // Increment button
+        b.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                obj.count();
+                disp.setText(String.valueOf(obj.count));
+            }
+        });
+
+        // Reset button
+        resetBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                obj.reset();
+                disp.setText(String.valueOf(obj.count));
+            }
+        });
+    }
 }
